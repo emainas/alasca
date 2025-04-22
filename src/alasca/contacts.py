@@ -63,13 +63,6 @@ def main(config_path):
     """Run contacts workflow based solely on config_path."""
     cfg = load_config(config_path)
 
-    # Determine whether to use Slurm (not implemented here)
-    slurm_val = cfg.get("slurm", False)
-    # YAML 'yes'/'no' are loaded as booleans; normalize truthiness
-    if bool(slurm_val):
-        print("SLURM submission not yet implemented; set slurm: no to run locally.")
-        sys.exit(0)
-
     # Determine initial files directory and result directory
     initial_dir = cfg.get("initial_dir", "initial_files")
     base = os.path.splitext(os.path.basename(config_path))[0]

@@ -8,4 +8,3 @@ fraction: 0.5
 contacts_txt: contacts.txt
 fraction_txt: fraction.txt
 resid_txt: resids.txt
-slurm: no
