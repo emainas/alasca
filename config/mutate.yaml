@@ -1,2 +1,3 @@
 pdbfile: start3.pdb
 resid_file: result/contacts/2-resids.txt
+mutation_resname: ALA

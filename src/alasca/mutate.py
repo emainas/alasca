@@ -24,15 +24,15 @@ def renumber_pdb(input_pdb, output_pdb):
     print(f"Renumbered PDB written to {output_pdb}")
 
 
-def run_mutation(pdbfile, resid, result_dir):
-    """Run cpptraj to mutate a single residue to ALA."""
+def run_mutation(pdbfile, resid, result_dir, mutation_resname):
+    """Run cpptraj to mutate a single residue to the specified amino acid."""
     os.makedirs(result_dir, exist_ok=True)
     mutated_name = f"mutated_{resid}.pdb"
     out_path = os.path.join(result_dir, mutated_name)
     cpp_input = f"""
 parm {pdbfile}
 loadcrd {pdbfile} name edited
-change crdset edited resname from :{resid} to ALA
+change crdset edited resname from :{resid} to {mutation_resname}
 crdaction edited strip :{resid}&!(@N,CA,C,O,CB)
 crdout edited {out_path}
 go
@@ -48,29 +48,31 @@ go
 def main(config_path):
     """Entry point: load config and perform renumbering and mutations."""
     cfg = load_config(config_path)
-    # directories
+
+    # Directories
     initial_dir = cfg.get("initial_dir", "initial_files")
     base = os.path.splitext(os.path.basename(config_path))[0]
     result_dir = os.path.join("result", base, "mutations")
 
-    # config parameters
-    pdbfile_name = cfg["pdbfile"]
-    resid_file   = cfg["resid_file"]
+    # Config parameters
+    pdbfile_name     = cfg["pdbfile"]
+    resid_file       = cfg["resid_file"]
+    mutation_resname = cfg.get("mutation_resname", "ALA")
 
-    # full paths
-    pdbfile = os.path.join(initial_dir, pdbfile_name)
-    renumbered = os.path.join(result_dir, f"{os.path.splitext(pdbfile_name)[0]}_renumbered.pdb")
+    # Full paths
+    pdbfile      = os.path.join(initial_dir, pdbfile_name)
+    renumbered_pdb = os.path.join(result_dir, f"{os.path.splitext(pdbfile_name)[0]}_renumbered.pdb")
 
-    # step 1: renumber
-    renumber_pdb(pdbfile, renumbered)
+    # Step 1: renumber PDB
+    renumber_pdb(pdbfile, renumbered_pdb)
 
-    # step 2: load residue list
+    # Step 2: load residue list
     with open(resid_file) as f:
         residues = [line.strip() for line in f if line.strip()]
 
-    # step 3: run mutations
+    # Step 3: run mutations for each residue
     for resid in residues:
-        run_mutation(renumbered, resid, result_dir)
+        run_mutation(renumbered_pdb, resid, result_dir, mutation_resname)
 
-# Note: invoked via the `alasca` console script in cli.py
+# Note: invoked via the `alasca mutate` console script in cli.py
 
