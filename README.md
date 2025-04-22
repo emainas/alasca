@@ -1,11 +1,11 @@
 # Alasca
 
-A thin Python wrapper around AmberTools’ \`cpptraj\` to:
+A thin Python wrapper around AmberTools’ `cpptraj` to:
 1. compute non‑native contacts  
 2. filter by occupancy ≥ 0.5  
 3. list residue IDs for downstream alanine scanning  
 
-> **Note:** Alasca invokes AmberTools’ \`cpptraj\` binary—you must have AmberTools installed.  
+> **Note:** Alasca invokes AmberTools’ `cpptraj` binary—you must have AmberTools installed.  
 > Download AmberTools here: https://ambermd.org/AmberTools.php
 
 ## Quickstart
