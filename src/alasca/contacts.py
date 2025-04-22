@@ -2,7 +2,6 @@
 import subprocess
 import sys
 import yaml
-import argparse
 import os
 
 
@@ -60,33 +59,23 @@ def post_process(dat_path, contacts_txt, frac_txt, resid_txt, frac_thresh, resul
     print(f"Wrote {len(resids)} residues to {resid_out}")
 
 
-def main():
-    """Entry point for 'alasca contacts' subcommand using a YAML config."""
-    parser = argparse.ArgumentParser(prog="alasca contacts")
-    parser.add_argument(
-        "-i", "--config", required=True,
-        help="Path to YAML config file"
-    )
-    parser.add_argument(
-        "--slurm", choices=["yes","no"], default=None,
-        help="Override Slurm submission: yes|no (default=from config)"
-    )
-    args = parser.parse_args()
-    cfg = load_config(args.config)
+def main(config_path):
+    """Run contacts workflow based solely on config_path."""
+    cfg = load_config(config_path)
 
-    # determine result directory from config filename
-    base = os.path.splitext(os.path.basename(args.config))[0]
-    result_dir = os.path.join("result", base)
-
-    use_slurm = args.slurm if args.slurm is not None else cfg.get("slurm", "no")
-    if use_slurm.lower() == "yes":
-        # optionally handle SLURM here or defer
-        print("SLURM submission not yet implemented")
+    # Determine whether to use Slurm (not implemented here)
+    if cfg.get("slurm", "no").lower() == "yes":
+        print("SLURM submission not yet implemented; set slurm: no to run locally.")
         sys.exit(0)
 
-    # load config values
-    parmfile     = cfg["parmfile"]
-    trajfile     = cfg["trajfile"]
+    # Determine initial files directory and result directory
+    initial_dir = cfg.get("initial_dir", "initial_files")
+    base = os.path.splitext(os.path.basename(config_path))[0]
+    result_dir = os.path.join("result", base)
+
+    # load config values, prefixing parmfile/trajfile with initial_dir
+    parmfile     = os.path.join(initial_dir, cfg["parmfile"])
+    trajfile     = os.path.join(initial_dir, cfg["trajfile"])
     ligand_mask  = cfg["ligand_mask"]
     protein_mask = cfg["protein_mask"]
     distance     = cfg.get("distance", 3.0)
@@ -97,8 +86,9 @@ def main():
 
     # run analysis
     dat_path = run_cpptraj(
-        parmfile, trajfile, ligand_mask,
-        protein_mask, distance, result_dir
+        parmfile, trajfile,
+        ligand_mask, protein_mask,
+        distance, result_dir
     )
     post_process(
         dat_path,
@@ -106,5 +96,5 @@ def main():
         frac_thresh, result_dir
     )
 
-if __name__ == "__main__":
-    main()
+# Note: invoked via the `alasca` console script in cli.py
+
