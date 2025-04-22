@@ -11,17 +11,17 @@ A thin Python wrapper around AmberTools’ `cpptraj` to:
 ## Quickstart
 
 ```bash
-module load amber/24
-export AMBERHOME=\$(dirname "\$(dirname "\$(which cpptraj)")")
-export PATH="\$AMBERHOME/bin:\$PATH"
+module load my-amber-module
+export AMBERHOME=$(dirname "$(dirname "$(which cpptraj)")")
+export PATH="$AMBERHOME/bin:$PATH"
 
 module load anaconda
 conda create -n alasca-env python=3.11
-conda activate alasca-env 
+conda activate alasca-env
 pip install --upgrade pip
 pip install -r requirements.txt
 pip install --editable .
 
 alasca --help
-alasca --parmfile mon.prmtop --trajfile mon_prod.nc --frac_thresh 0.5
+alasca contacts -i config/contacts.yaml
 ```
