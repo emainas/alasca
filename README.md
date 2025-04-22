@@ -10,7 +10,7 @@ A thin Python wrapper around AmberTools’ \`cpptraj\` to:
 
 ## Quickstart
 
-\`\`\`bash
+```bash
 module load amber/24
 export AMBERHOME=\$(dirname "\$(dirname "\$(which cpptraj)")")
 export PATH="\$AMBERHOME/bin:\$PATH"
@@ -24,4 +24,4 @@ pip install --editable .
 
 alasca --help
 alasca --parmfile mon.prmtop --trajfile mon_prod.nc --frac_thresh 0.5
-\`\`\`
+```
