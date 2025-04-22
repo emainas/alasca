@@ -7,6 +7,9 @@ Project-URL: Source, https://github.com/emainas/alasca
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: pyyaml
 Dynamic: license-file
 
 # Alasca

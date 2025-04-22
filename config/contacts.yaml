@@ -1,0 +1,9 @@
+parmfile: mon.prmtop
+trajfile: mon_prod.nc
+ligand_mask: ":170"
+protein_mask: ":1-169"
+distance: 3.0
+fraction: 0.5
+contacts_txt: contacts2.txt
+fraction_txt: fraction.txt
+resid_txt: 2-resids.txt

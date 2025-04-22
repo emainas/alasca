@@ -8,5 +8,6 @@ src/alasca.egg-info/PKG-INFO
 src/alasca.egg-info/SOURCES.txt
 src/alasca.egg-info/dependency_links.txt
 src/alasca.egg-info/entry_points.txt
+src/alasca.egg-info/requires.txt
 src/alasca.egg-info/top_level.txt
 tests/test_cli.py
