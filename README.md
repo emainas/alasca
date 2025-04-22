@@ -1,3 +1,5 @@
+![Alasca Logo](assets/logo.png)
+
 # Alasca
 
 A thin Python wrapper around AmberTools’ `cpptraj` to:
