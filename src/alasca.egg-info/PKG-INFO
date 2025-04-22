@@ -1,0 +1,36 @@
+Metadata-Version: 2.4
+Name: alasca
+Version: 0.1.0
+Summary: Wrapper for AmberTools cpptraj nonnative-contact analysis and alanine-scanning prep
+Project-URL: Homepage, https://github.com/yourusername/alasca
+Project-URL: Source, https://github.com/yourusername/alasca
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# Alasca
+
+A thin Python wrapper around AmberTools’ \`cpptraj\` to:
+1. compute non‑native contacts  
+2. filter by occupancy ≥ 0.5  
+3. list residue IDs for downstream alanine scanning  
+
+> **Note:** Alasca invokes AmberTools’ \`cpptraj\` binary—you must have AmberTools installed.  
+> Download AmberTools here: https://ambermd.org/AmberTools.php
+
+## Quickstart
+
+\`\`\`bash
+module load amber/24
+export AMBERHOME=\$(dirname "\$(dirname "\$(which cpptraj)")")
+export PATH="\$AMBERHOME/bin:\$PATH"
+
+conda activate alasca-env   # or source .venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+pip install --editable .
+
+alasca --help
+alasca --parmfile mon.prmtop --trajfile mon_prod.nc --frac_thresh 0.5
+\`\`\`

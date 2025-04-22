@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0","wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alasca"
+version = "0.1.0"
+description = "Wrapper for AmberTools cpptraj nonnative-contact analysis and alanine-scanning prep"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/emainas/alasca"
+Source   = "https://github.com/emainas/alasca"
+
+[project.scripts]
+alasca = "alasca.contacts:main"

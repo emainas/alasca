@@ -1,0 +1,2 @@
+[console_scripts]
+alasca = alasca.run_native_contacts:main
