@@ -1,8 +1,4 @@
 <p align="left">
-  <img src="assets/logo.png" width="120" alt="Alasca Logo">
-</p>
-
-<p align="left">
   <a href="https://pypi.org/project/alasca/">
     <img src="https://img.shields.io/pypi/v/alasca.svg" alt="PyPI version">
   </a>
@@ -13,6 +9,10 @@
   <a href="https://github.com/emainas/alasca/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/emainas/alasca.svg" alt="License">
   </a>
+</p>
+
+<p align="left">
+  <img src="assets/logo.png" width="120" alt="Alasca Logo">
 </p>
 
 # Alasca
