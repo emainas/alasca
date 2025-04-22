@@ -2,8 +2,8 @@ Metadata-Version: 2.4
 Name: alasca
 Version: 0.1.0
 Summary: Wrapper for AmberTools cpptraj nonnative-contact analysis and alanine-scanning prep
-Project-URL: Homepage, https://github.com/yourusername/alasca
-Project-URL: Source, https://github.com/yourusername/alasca
+Project-URL: Homepage, https://github.com/emainas/alasca
+Project-URL: Source, https://github.com/emainas/alasca
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
 License-File: LICENSE
@@ -26,7 +26,9 @@ module load amber/24
 export AMBERHOME=\$(dirname "\$(dirname "\$(which cpptraj)")")
 export PATH="\$AMBERHOME/bin:\$PATH"
 
-conda activate alasca-env   # or source .venv/bin/activate
+module load anaconda
+conda create -n alasca-env python=3.11
+conda activate alasca-env 
 pip install --upgrade pip
 pip install -r requirements.txt
 pip install --editable .

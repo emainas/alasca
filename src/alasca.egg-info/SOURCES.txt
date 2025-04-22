@@ -2,7 +2,8 @@ LICENSE
 README.md
 pyproject.toml
 src/alasca/__init__.py
-src/alasca/run_native_contacts.py
+src/alasca/cli.py
+src/alasca/contacts.py
 src/alasca.egg-info/PKG-INFO
 src/alasca.egg-info/SOURCES.txt
 src/alasca.egg-info/dependency_links.txt
