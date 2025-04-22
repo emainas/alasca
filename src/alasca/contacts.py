@@ -64,7 +64,9 @@ def main(config_path):
     cfg = load_config(config_path)
 
     # Determine whether to use Slurm (not implemented here)
-    if cfg.get("slurm", "no").lower() == "yes":
+    slurm_val = cfg.get("slurm", False)
+    # YAML 'yes'/'no' are loaded as booleans; normalize truthiness
+    if bool(slurm_val):
         print("SLURM submission not yet implemented; set slurm: no to run locally.")
         sys.exit(0)
 
@@ -97,4 +99,3 @@ def main(config_path):
     )
 
 # Note: invoked via the `alasca` console script in cli.py
-
