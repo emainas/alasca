@@ -15,4 +15,4 @@ Homepage = "https://github.com/emainas/alasca"
 Source   = "https://github.com/emainas/alasca"
 
 [project.scripts]
-alasca = "alasca.contacts:main"
+alasca = "alasca.cli:main"
